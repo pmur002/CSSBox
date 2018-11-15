@@ -164,7 +164,7 @@ public class BoxBrowser
             
             contentCanvas = new BrowserCanvas(da.getRoot(), da, docSource.getURL());
             ((BrowserCanvas) contentCanvas).setConfig(config);
-            ((BrowserCanvas) contentCanvas).createLayout(contentScroll.getSize(), contentScroll.getVisibleRect());
+            ((BrowserCanvas) contentCanvas).createLayout(contentScroll.getSize(), contentScroll.getVisibleRect(), false);
             
             docSource.close();
 
@@ -733,7 +733,7 @@ public class BoxBrowser
                 {
                     if (contentCanvas != null && contentCanvas instanceof BrowserCanvas)
                     {
-                        ((BrowserCanvas) contentCanvas).createLayout(contentScroll.getSize(), contentScroll.getViewport().getViewRect());
+                        ((BrowserCanvas) contentCanvas).createLayout(contentScroll.getSize(), contentScroll.getViewport().getViewRect(), false);
                         contentScroll.repaint();
                         //new box tree
                         root = createBoxTree(((BrowserCanvas) contentCanvas).getViewport());

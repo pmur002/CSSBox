@@ -128,13 +128,13 @@ public class ImageRenderer
 
         if (type == Type.PNG)
         {
-            contentCanvas.createLayout(windowSize);
+            contentCanvas.createLayout(windowSize, false);
             ImageIO.write(contentCanvas.getImage(), "png", out);
         }
         else if (type == Type.SVG)
         {
             setDefaultFonts(contentCanvas.getConfig());
-            contentCanvas.createLayout(windowSize);
+            contentCanvas.createLayout(windowSize, false);
             Writer w = new OutputStreamWriter(out, "utf-8");
             writeSVG(contentCanvas.getViewport(), w);
             w.close();

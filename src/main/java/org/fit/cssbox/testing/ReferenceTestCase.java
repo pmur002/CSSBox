@@ -190,7 +190,7 @@ public class ReferenceTestCase implements Callable<Float>
         contentCanvas.getConfig().setLoadImages(loadImages);
         contentCanvas.getConfig().setLoadBackgroundImages(loadBackgroundImages);
 
-        contentCanvas.createLayout(windowSize);
+        contentCanvas.createLayout(windowSize, false);
         return contentCanvas.getImage();
     }
     

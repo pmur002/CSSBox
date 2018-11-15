@@ -80,7 +80,7 @@ public class SimpleBrowser extends javax.swing.JFrame
         documentScroll = new javax.swing.JScrollPane();
         
         //Create the browser canvas
-        browserCanvas = new BrowserCanvas(docroot, decoder, new java.awt.Dimension(1000, 600), baseurl);
+        browserCanvas = new BrowserCanvas(docroot, decoder, new java.awt.Dimension(1000, 600), baseurl, false);
 
         //A simple mouse listener that displays the coordinates clicked
         browserCanvas.addMouseListener(new MouseListener() {

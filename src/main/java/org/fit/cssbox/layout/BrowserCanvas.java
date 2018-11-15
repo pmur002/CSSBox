@@ -59,7 +59,7 @@ public class BrowserCanvas extends JPanel
     
     /** 
      * Creates a new instance of the browser engine for a document. After creating the engine,
-     * the layout itself may be computed by calling {@link #createLayout(Dimension)}.
+     * the layout itself may be computed by calling {@link #createLayout(Dimension, fractionalMetrics)}.
      * @param root the &lt;body&gt; element of the document to be rendered
      * @param decoder the CSS decoder used to compute the style
      * @param baseurl the document base URL   
@@ -85,10 +85,11 @@ public class BrowserCanvas extends JPanel
      */
     public BrowserCanvas(org.w3c.dom.Element root,
                          DOMAnalyzer decoder,
-                         Dimension dim, URL baseurl)
+                         Dimension dim, URL baseurl,
+                         boolean fractionalMetrics)
     {
         this(root, decoder, baseurl);
-        createLayout(dim);
+        createLayout(dim, fractionalMetrics);
     }
     
     /**
@@ -137,9 +138,9 @@ public class BrowserCanvas extends JPanel
      * size is updated automatically.
      * @param dim the viewport size
      */
-    public void createLayout(Dimension dim)
+    public void createLayout(Dimension dim, boolean fractionalMetrics)
     {
-        createLayout(dim, new Rectangle(dim));
+        createLayout(dim, new Rectangle(dim), fractionalMetrics);
     }
     
     /**
@@ -149,11 +150,16 @@ public class BrowserCanvas extends JPanel
      * @param dim the total canvas size 
      * @param visibleRect the viewport (the visible area) size and position
      */
-    public void createLayout(Dimension dim, Rectangle visibleRect)
+    public void createLayout(Dimension dim, Rectangle visibleRect, 
+                             boolean fractionalMetrics)
     {
         if (createImage)
             img = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_RGB);
         Graphics2D ig = img.createGraphics();
+        if (fractionalMetrics) {
+            ig.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,
+                                RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+        }
         
         if (autoMediaUpdate)
         {
@@ -288,7 +294,7 @@ public class BrowserCanvas extends JPanel
     /**
      * Enables or disables automatic updating of the display area size specified in the current media specification.
      * When enabled, the size in the media specification is updated automatically when
-     * {@link BrowserCanvas#createLayout(Dimension, Rectangle)} is called. When disabled, the media specification
+     * {@link BrowserCanvas#createLayout(Dimension, Rectangle, fractionalMetrics)} is called. When disabled, the media specification
      * is not modified automatically. By default, the automatic update is enabled.
      * 
      * @param autoMediaUpdate {@code true} when enabled.

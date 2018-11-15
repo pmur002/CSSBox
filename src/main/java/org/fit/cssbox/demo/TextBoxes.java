@@ -94,7 +94,7 @@ public class TextBoxes
             browser.getConfig().setLoadBackgroundImages(false);
             
             //Create the layout for 1000x600 pixels
-            browser.createLayout(new java.awt.Dimension(1000, 600));
+            browser.createLayout(new java.awt.Dimension(1000, 600), false);
             
             //Display the result
             printTextBoxes(browser.getViewport());
