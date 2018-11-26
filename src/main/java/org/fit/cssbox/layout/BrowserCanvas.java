@@ -82,6 +82,7 @@ public class BrowserCanvas extends JPanel
      * @param decoder the CSS decoder used to compute the style
      * @param dim the preferred canvas dimensions
      * @param baseurl the document base URL   
+     * @param fractionalMetrics whether to calculate fractional font metrics (or round them to integer [pixel] values)
      */
     public BrowserCanvas(org.w3c.dom.Element root,
                          DOMAnalyzer decoder,
@@ -149,6 +150,7 @@ public class BrowserCanvas extends JPanel
      * specified for the resulting page), the total canvas size is updated automatically.
      * @param dim the total canvas size 
      * @param visibleRect the viewport (the visible area) size and position
+     * @param fractionalMetrics whether to calculate fractional font metrics (or round them to integer [pixel] values)
      */
     public void createLayout(Dimension dim, Rectangle visibleRect, 
                              boolean fractionalMetrics)
